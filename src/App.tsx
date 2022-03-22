@@ -104,8 +104,11 @@ class App extends Component<{}, AppState> {
 
     render() {
         return (
+            <div id={"Main"}>
+                <div id={"TicTacToe"}>
+                    <h1>Tic-Tac-Toe</h1>
+                </div>
             <div id={"Board"}>
-                Tic-Tac-Toe
                 <Board
                     end={this.state.end}
                     turn={this.state.turn}
@@ -117,6 +120,7 @@ class App extends Component<{}, AppState> {
                 >
                 </Board>
                 <p>{this.state.winMsg}</p>
+            </div>
             </div>
         );
     }
