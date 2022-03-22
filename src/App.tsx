@@ -32,18 +32,23 @@ class App extends Component<{}, AppState> {
     }
 
     winConditions(value: number[][]) {
+        console.log(value);
         for (let i = 0; i < 3; i++) {
             // checks each row
             if (value[i][0] !== 0 && value[i][0] === value[i][1] && value[i][1] === value[i][2]) {
                 this.displayMsg(value[i][0]);
                 return;
             }
+        }
+
+        for (let i = 0; i < 3; i++) {
             // checks each column
-            else if(value[0][i] !== 0 && value[0][i] === value[1][i] && value[1][i] === value[2][i]){
-                this.displayMsg(value[i][0]);
+            if(value[0][i] !== 0 && value[0][i] === value[1][i] && value[1][i] === value[2][i]){
+                this.displayMsg(value[0][i]);
                 return;
             }
         }
+
         // checks diagonal (top-left to bottom-right)
         if(value[0][0] !== 0 && value[0][0] === value[1][1] && value[1][1] === value[2][2]) {
             this.displayMsg(value[0][0]);
