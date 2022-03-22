@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import Board from "./Board";
 import './App.css';
+import {behaviorPlugin} from "@testing-library/user-event/dist/keyboard/types";
 
 
 interface AppState {
     turn: boolean, // true is for first player, false for second
     winMsg: string,
-    reset: boolean;
+    reset: boolean,
+    end: boolean,
 }
 
 /**
@@ -18,7 +20,8 @@ class App extends Component<{}, AppState> {
         this.state = {
             turn: true,
             reset: false,
-            winMsg: ''
+            winMsg: '',
+            end: false,
         };
     }
 
@@ -81,12 +84,16 @@ class App extends Component<{}, AppState> {
                 winMsg: "Player 1 is not the Winner"
             })
         }
+        this.setState({
+           end: true,
+        });
     }
 
     reset() {
         this.setState({
             turn: true,
             winMsg: "",
+            end: false,
         })
     }
 
@@ -95,6 +102,7 @@ class App extends Component<{}, AppState> {
             <div id={"Board"}>
                 Tic-Tac-Toe
                 <Board
+                    end={this.state.end}
                     turn={this.state.turn}
                     onChange={(value) => {
                         this.turnChange()

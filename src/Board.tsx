@@ -8,6 +8,7 @@ import App from "./App";
  * 2 - O
  */
 interface BoardProps{
+    end: boolean,
     turn: boolean,
     onChange(state: number[][]): void;
     reset(): void;
@@ -38,7 +39,7 @@ class Board extends Component<BoardProps, BoardState> {
     }
 
     buttonClick(row: number, col: number){
-        if(this.state.board[row][col] > 0) return;
+        if(this.state.board[row][col] > 0 || this.props.end) return;
         let copy = this.state.board;
         if(this.props.turn) {
             copy[row][col] = 1;
