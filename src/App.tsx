@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Board from "./Board";
 import './App.css';
-import {behaviorPlugin} from "@testing-library/user-event/dist/keyboard/types";
 
 
 interface AppState {

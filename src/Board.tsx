@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import App from "./App";
 
 /**
  * Underlying array to represent the board.
@@ -31,10 +30,10 @@ class Board extends Component<BoardProps, BoardState> {
 
     buttonValue(row: number, col: number){
         if(this.state.board[row][col] === 0)
-            return '-'
+            return require('./emptySquare.png');
         if(this.state.board[row][col] === 1)
-            return 'X'
-        return 'O'
+            return require('./player1Square.png');
+        return require('./player2Square.png');
 
     }
 
@@ -64,33 +63,19 @@ class Board extends Component<BoardProps, BoardState> {
     }
 
     render() {
-        let image: any[][] = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
-        for(let i = 0; i < 3; i++) {
-            for(let j = 0; j < 3; j++) {
-                if(this.state.board[i][j] === 1) {
-                    image[i][j] = require('./player1Square.png');
-                }
-                else if(this.state.board[i][j] === 2) {
-                    image[i][j] = require('./player2Square.png');
-                }
-                else {
-                    image[i][j] = require('./emptySquare.png');
-                }
-            }
-        }
         return(
             <div>
-                <input type="image" src={image[0][0]} onClick={() => this.buttonClick(0,0)}/>
-                <input type="image" src={image[0][1]} onClick={() => this.buttonClick(0,1)}/>
-                <input type="image" src={image[0][2]} onClick={() => this.buttonClick(0,2)}/>
+                <input type="image" src={this.buttonValue(0, 0)} onClick={() => this.buttonClick(0,0)}/>
+                <input type="image" src={this.buttonValue(0, 1)} onClick={() => this.buttonClick(0,1)}/>
+                <input type="image" src={this.buttonValue(0, 2)} onClick={() => this.buttonClick(0,2)}/>
                 <div/>
-                <input type="image" src={image[1][0]} onClick={() => this.buttonClick(1,0)}/>
-                <input type="image" src={image[1][1]} onClick={() => this.buttonClick(1,1)}/>
-                <input type="image" src={image[1][2]} onClick={() => this.buttonClick(1,2)}/>
+                <input type="image" src={this.buttonValue(1, 0)} onClick={() => this.buttonClick(1,0)}/>
+                <input type="image" src={this.buttonValue(1, 1)} onClick={() => this.buttonClick(1,1)}/>
+                <input type="image" src={this.buttonValue(1, 2)} onClick={() => this.buttonClick(1,2)}/>
                 <div/>
-                <input type="image" src={image[2][0]} onClick={() => this.buttonClick(2,0)}/>
-                <input type="image" src={image[2][1]} onClick={() => this.buttonClick(2,1)}/>
-                <input type="image" src={image[2][2]} onClick={() => this.buttonClick(2,2)}/>
+                <input type="image" src={this.buttonValue(2, 0)} onClick={() => this.buttonClick(2,0)}/>
+                <input type="image" src={this.buttonValue(2, 1)} onClick={() => this.buttonClick(2,1)}/>
+                <input type="image" src={this.buttonValue(2, 2)} onClick={() => this.buttonClick(2,2)}/>
                 <div/>
                 <button onClick={() => this.reset()}>Reset</button>
             </div>
